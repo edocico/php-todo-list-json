@@ -37,9 +37,15 @@
                     <section class="list-section">
                         <ul>
                             <li v-for="(todo, index) in todos" :key="index">
-                                <span class="text"> {{ todo.text }}</span>
+                                <div class="item">
+                                <span class="text" :class="{
+                                    done: todo.done }" @click.stop="taskDone(index)"> {{ todo.text }}</span>
+                                <span class="check" v-if="todo.done === true"><i class="fa-solid fa-check"></i></span>
+                                <span class="cross" v-if="todo.done === false"><i class="fa-solid fa-xmark"></i></span>
+
+                                </div>
                                 
-                                <span @click="deleteToDo(index)"><i class="fa-solid fa-xmark"></i></span>
+                                <span @click.stop="deleteToDo(index)"><i class="fa-solid fa-xmark"></i></span>
                             </li>
                         </ul>
                     </section>

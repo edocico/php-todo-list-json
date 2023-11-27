@@ -91,3 +91,21 @@ li {
   line-height: 1.5em;
   font-size: 20px;
 }
+
+.check {
+  color: green;
+}
+
+.cross {
+  color: red;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.done {
+  text-decoration: line-through;
+}

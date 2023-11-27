@@ -59,6 +59,22 @@ createApp({
           }
         });
     },
+    taskDone(index) {
+      const data = {
+        dataindex: index,
+      };
+      axios
+        .post("./taskdone", data, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          if (res.data.success === true) {
+            this.todos = res.data.results;
+          }
+        });
+    },
   },
   created() {
     this.fetchToDo();

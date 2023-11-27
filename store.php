@@ -2,7 +2,9 @@
 
 $new_todo = $_POST['todo'] ?? '';
 
-
+$response = [
+    'success' => true
+];
 
 if ($new_todo) {
     
@@ -17,30 +19,23 @@ if ($new_todo) {
     
     $todos[] = $todo;
 
-    $response = [
-        'success' => true,
-        'results' => $todos
-    ];
+    $response['results'] = $todos;
     
 
     $todos_json_string = json_encode($todos);
 
     file_put_contents('./todos.json', $todos_json_string);
 
-    header('Content-type: application/json');
-    echo json_encode($response); 
+    
 } else {
     
-    $response = [
-        'success' => false,
-        'message' => 'Server error!'
-    ];
+    
 
-    header('Content-type: application/json');
-    echo json_encode($response); 
+    $response['success'] = false;
+    $response['message'] = 'Server error!';
 }
 
-/* header('Content-type: application/json');
-echo json_encode($response); */
+header('Content-type: application/json');
+echo json_encode($response);
 
 ?>
