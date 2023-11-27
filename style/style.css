@@ -84,4 +84,8 @@ li {
 .list-section li {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-bottom: 1px solid black;
 }

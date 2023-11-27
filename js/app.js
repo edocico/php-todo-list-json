@@ -23,9 +23,9 @@ createApp({
             },
           })
           .then((res) => {
+            console.log(res.data);
             this.todos = res.data.results;
             console.log(res.data.results);
-            console.log(this.newTodo);
           });
 
         this.newTodo = "";
