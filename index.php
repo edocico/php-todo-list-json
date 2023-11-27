@@ -22,6 +22,7 @@
     <div id="app">
         <header class="title">
             <h1><?php echo $title?></h1>
+            <h2 v-if="errorState === true"> {{ errorMessage }} </h2>
         </header>
 
         <main class="main">
@@ -38,7 +39,7 @@
                             <li v-for="(todo, index) in todos" :key="index">
                                 <span class="text"> {{ todo.text }}</span>
                                 
-                                <span><i class="fa-solid fa-xmark"></i></span>
+                                <span @click="deleteToDo(index)"><i class="fa-solid fa-xmark"></i></span>
                             </li>
                         </ul>
                     </section>

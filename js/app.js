@@ -6,6 +6,8 @@ createApp({
       subTitle: "Aggiungi un task",
       todos: [],
       newTodo: "",
+      errorState: false,
+      errorMessage: "",
     };
   },
   methods: {
@@ -24,8 +26,12 @@ createApp({
           })
           .then((res) => {
             console.log(res.data);
-            this.todos = res.data.results;
-            console.log(res.data.results);
+            if (res.data.success === true) {
+              this.todos = res.data.results;
+            } else {
+              this.errorMessage = res.data.errorMessage;
+              this.errorState = true;
+            }
           });
 
         this.newTodo = "";
@@ -36,6 +42,22 @@ createApp({
         console.log(res.data.results);
         this.todos = res.data.results;
       });
+    },
+    deleteToDo(index) {
+      const data = {
+        dataindex: index,
+      };
+      axios
+        .post("./delete.php", data, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          if (res.data.success === true) {
+            this.todos = res.data.results;
+          }
+        });
     },
   },
   created() {
